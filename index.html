@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+		<meta charset="UTF-8" />
+		<title>ランダム抽出</title>
+		<!-- iosのアイコン設定 -->
+		<link rel="apple-touch-icon" href="imgs/icon.jpg" sizes="192x192" />
+		<!-- PWAのmanifest.json読み込み -->
+		<link rel="manifest" href="manifest.json" />
+		
+		// script読み込み
+	</head>
+	<body>
+		<!--
+		基本機能
+		・データセットからランダム抽出
+		・データセットの登録（ローカルCSVから読み込み）
+		・データセットの切り替え
+		-->
+		<div id="contents">
+			<p id="furigana">フリガナ</p>
+			<p id="kanji">[ ランダムに名前を表示 ]</p>
+			<input type="button" value="Push !" id="pickup" />
+		</div>
+		<div id="register">
+			<p id="discription">データ登録</p>
+			<input type="file" accept=".csv,text/csv" onchange="handleUpload" />
+		</div>
+	</body>
+</html>
