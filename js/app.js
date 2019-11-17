@@ -1,6 +1,35 @@
 // Lottery Javascript
 
-function 
+// DB作成
+var DB_FIELD = "++id, name, furigana"
+var db = new Dexie("AppDataset");
+var db_version = 1;	
+// ストア作成
+db.version(db_version).stores({
+	dataset_1: DB_FIELD
+});
+db.dataset_1.add({name: "寺田　太郎", furigana: "テラダ　タロウ"});
+
+// データセットに登録
+function registor-dataset(filename){
+	// CSVファイル読み込み
+	
+	
+	// データ検証
+	
+	
+	// ストア作成
+	db.version(db_version).stores({
+		dataset_1: DB_FIELD
+	});
+	
+	
+}
+
+// データセットからランダム抽出
+function pickup(){
+	
+}
 
 $(function(){
   $("#pickup").click(function(){
