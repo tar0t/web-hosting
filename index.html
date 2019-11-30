@@ -2,16 +2,20 @@
 <html lang="ja">
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		
 		<title>ランダム抽出</title>
-		<!-- iosのアイコン設定 -->
-		<link rel="apple-touch-icon" href="imgs/icon.jpg" sizes="192x192" />
-		<!-- PWAのmanifest.json読み込み -->
-		<link rel="manifest" href="manifest.json" />
-		<link rel="stylesheet" href="css/style.css">
-		
 		<!-- script読み込み -->
-		<script src="js/dexie.js"></script>
-		
+		<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+		<script src="js/dexie.min.js"></script>
+		<script src="js/papaparse.min.js"></script>
+		<script src="js/encoding.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/beauter.min.css">
+
+		<!-- iosのアイコン設定 -->
+		<link rel="apple-touch-icon" href="images/icon.jpg" sizes="192x192"/>
+		<!-- PWAのmanifest.json -->
+		<link rel="manifest" href="manifest.json">
 	</head>
 	<body>
 		<!--
@@ -20,15 +24,43 @@
 		・データセットの登録（ローカルCSVから読み込み）
 		・データセットの切り替え
 		-->
-		<div id="contents">
-			<p id="furigana">フリガナ</p>
-			<p id="kanji">[ ランダムに名前を表示 ]</p>
-			<input type="button" value="Push !" id="pickup" />
+		<div id="contents" class="jumbo" style="height:70%;">
+			<h3 id="furigana">フリガナ</h3>
+			<h1 id="kanji">名前を表示</h1>
+			<input type="button" value="Push !" id="pickup" class="_xlarge _round _width75 _primary" style="height:5em;" />
 		</div>
 		<div id="register">
-			<p id="discription">データ登録</p>
-			<input type="file" accept=".csv,text/csv" onchange="handleUpload" />
+			<button id="accordion-button" class="accordion _alignCenter _xlarge">データ登録</button>
+			<div id="accordion-panel" class="-panel">
+				<div id="load-file">
+					<input type="button" value="ファイルを選択" id="btn-load-file" class="_xlarge _round _width100 _primary" style="height:5em;" />
+					<input type="file" accept=".csv,text/csv" id="file-load-file" class="_hidden" />
+				</div>
+				<div id="register-data" style="visibility:hidden;">
+					<input type="button" value="登録" id="btn-register" class="_xlarge _round _width100 _primary" style="height:5em;" />
+					<input type="button" value="キャンセル" id="btn-cancel" class="_xlarge _round _width100 _primary" style="height:5em;" />
+				</div>
+			</div>
+			<!-- プレビュー用 -->
+			<div id="view-dataset">
+				<table></table>
+			</div>
 		</div>
+		<!-- メッセージ表示用 -->
+		<div id="sn1" class="snackbar"></div>
+
 		<script src="js/app.js"></script>
+		<script src="js/beauter.min.js"></script>
+		<script>
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker.register('sw.js').then(function(registration) {
+					// 登録成功
+					console.log('ServiceWorker の登録に成功しました。スコープ: ', registration.scope);
+				}).catch(function(err) {
+					// 登録失敗
+					console.log('ServiceWorker の登録に失敗しました。', err);
+				});
+			}
+		</script>
 	</body>
 </html>
