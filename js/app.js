@@ -5,7 +5,7 @@ var db = new Dexie("AppDataset");
 var db_version = 1;	
 // ストア作成
 db.version(db_version).stores({
-	dataset: "++id, value"
+	dataset: "++id, value1, value2"
 });
 
 // ファイル読み込みボタン押下
@@ -29,6 +29,7 @@ var reader = new FileReader();
 var dataset = null;
 reader.onload = (function(){
 	Papa.parse(reader.result, {
+		skipEmptyLines: 'greedy',
 		complete: function(results){
 			if(results.data.length > 0 && results.data[0].length == 2){
 				dataset = results.data;
